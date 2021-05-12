@@ -6,7 +6,6 @@ type User {
   id: ID!
   iCloudKeyChain: String!
   nickname: String!
-  profileImageUrl: String
   updatedAt: DateTime!
   createdAt: DateTime!
 }
@@ -27,5 +26,4 @@ type Mutation {
 input UserDataInput {
   iCloudKeyChain: String!
   nickname: String!
-  profileImageUrl: String
 }

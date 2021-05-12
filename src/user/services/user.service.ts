@@ -17,7 +17,6 @@ export class UserService {
         const user = User.create({
             iCloudKeyChain: data.iCloudKeyChain,
             nickname: data.nickname,
-            profileImageUrl: data.profileImageUrl,
         });
         return user.save();
     }

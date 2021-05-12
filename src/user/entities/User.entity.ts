@@ -17,10 +17,6 @@ export class User extends BaseEntity {
     @Field(() => String)
     nickname!: string;
 
-    @Column({type: 'varchar', nullable: true, name: 'profile_image_url'})
-    @Field(() => String, {nullable: true})
-    profileImageUrl!: string;
-
     @UpdateDateColumn({name: 'updated_at'})
     @Field(() => Date)
     updatedAt!: Date;

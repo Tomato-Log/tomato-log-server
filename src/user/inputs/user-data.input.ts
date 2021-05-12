@@ -7,7 +7,4 @@ export class UserDataInput {
 
     @Field(() => String)
     nickname!: string;
-
-    @Field(() => String, {nullable: true})
-    profileImageUrl?: string;
 }

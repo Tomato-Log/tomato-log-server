@@ -10,12 +10,26 @@ type User {
   createdAt: String!
 }
 
+type Movie {
+  id: ID!
+  title: String!
+  releaseDate: String!
+  posterPath: String
+  genre: String
+  country: String
+  runtime: Int
+  overview: String
+}
+
 type Query {
   users: [User!]!
+  movies: [Movie!]!
+  getPupulars: [Movie!]!
 }
 
 type Mutation {
   createUser(data: UserDataInput!): User!
+  saveMovies(id: Int!): Movie!
 }
 
 input UserDataInput {

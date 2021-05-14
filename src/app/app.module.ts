@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from 'src/user/user.module';
 import { GraphQLModule } from '@nestjs/graphql';
+import { MovieModule } from 'src/movie/movie.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { GraphQLModule } from '@nestjs/graphql';
       autoSchemaFile: 'schema.gql',
     }),
     UserModule,
+    MovieModule,
   ],
   controllers: [AppController],
   providers: [AppService],

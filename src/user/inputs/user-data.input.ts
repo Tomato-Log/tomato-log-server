@@ -2,9 +2,9 @@ import { Field, InputType, Int } from "@nestjs/graphql";
 
 @InputType()
 export class UserDataInput {
-    @Field(() => Int)
-    something!: number;
+    @Field(() => String)
+    iCloudKeyChain!: string;
 
-    @Field(() => Int)
-    something2!: number;
+    @Field(() => String)
+    nickname!: string;
 }

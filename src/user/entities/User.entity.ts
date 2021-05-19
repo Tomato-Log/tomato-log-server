@@ -1,6 +1,5 @@
-import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
-import { Moment } from "moment";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
@@ -9,19 +8,20 @@ export class User extends BaseEntity {
     @Field(() => ID)
     id!: number;
 
-    @Column({type: 'int', nullable: false})
-    @Field(() => Int, {nullable: false})
-    something!: number;
+    // TODO: iCloud key chain 으로 확정되면 uuid 로 바꿔도 될듯(UserDataInput 도).
+    @Column({type: 'varchar', nullable: false, unique: true, name: 'i_cloud_key_chain'})
+    @Field(() => String)
+    iCloudKeyChain!: string;
 
-    @Column({type: 'int', nullable: false})
-    @Field(() => Int, {nullable: false})
-    something2!: number;
+    @Column({type: 'varchar', nullable: false, unique: true})
+    @Field(() => String)
+    nickname!: string;
 
-    @Column({type: 'boolean', nullable: false, default: true, name: 'is_active'})
-    @Field(() => Boolean, {nullable: false})
-    isActive!: boolean;
+    @UpdateDateColumn({name: 'updated_at'})
+    @Field(() => Date)
+    updatedAt!: Date;
 
     @CreateDateColumn({name: 'created_at'})
-    @Field(() => String) // TODO: graphql 에 moment 관련 custom scalar 만들기?
-    createdAt!: Moment;
+    @Field(() => Date)
+    createdAt!: Date;
 }

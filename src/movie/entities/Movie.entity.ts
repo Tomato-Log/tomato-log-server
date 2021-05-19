@@ -15,7 +15,7 @@ export class Movie extends BaseEntity {
   @Field(() => ID)
   id!: number;
 
-  @Column({ unique: true, nullable: false, name: 'movie_id' })
+  @Column({ unique: true, name: 'movie_id' })
   @Field(() => Int)
   movieId: number;
 

@@ -17,7 +17,7 @@ export class MovieService {
       // 이미 존재하는 영화인지 확인
       const isExist = await Movie.findOne({
         where: {
-          id,
+          movieId: id,
         },
       });
 
@@ -52,7 +52,7 @@ export class MovieService {
   public async getMovieFromMovieDto(dto: MovieDto) {
     try {
       const movie: Movie = Movie.create({
-        id: dto.id,
+        movieId: dto.id,
         title: dto.title,
         releaseDate: dto.release_date,
       });

@@ -14,13 +14,26 @@ type User {
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+type Movie {
+  id: ID!
+  title: String!
+  releaseDate: String!
+  posterPath: String
+  genre: String
+  country: String
+  runtime: Int
+  overview: String
+}
 
 type Query {
   users: [User!]!
+  movies: [Movie!]!
+  getPupulars: [Movie!]!
 }
 
 type Mutation {
   createUser(data: UserDataInput!): User!
+  saveMovies(id: Int!): Movie!
 }
 
 input UserDataInput {

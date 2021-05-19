@@ -3,10 +3,10 @@ export class MovieResponseDto {
 }
 
 export class MoviePopularResponseDto {
-  public data: MoviePupularDto;
+  public data: MoviePopularDto;
 }
 
-export class MoviePupularDto {
+export class MoviePopularDto {
   public page: number;
 
   public results: MovieDto[];

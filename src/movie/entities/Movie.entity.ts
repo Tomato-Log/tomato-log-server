@@ -1,5 +1,12 @@
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -8,15 +15,19 @@ export class Movie extends BaseEntity {
   @Field(() => ID)
   id!: number;
 
+  @Column({ unique: true, nullable: false, name: 'movie_id' })
+  @Field(() => Int)
+  movieId: number;
+
   @Column()
   @Field(() => String)
   title!: string;
 
-  @Column()
+  @Column({ name: 'release_date' })
   @Field(() => String)
   releaseDate!: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, name: 'poster_path' })
   @Field(() => String, { nullable: true })
   posterPath: string;
 
@@ -35,4 +46,12 @@ export class Movie extends BaseEntity {
   @Column({ nullable: true })
   @Field(() => String, { nullable: true })
   overview: string;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  @Field(() => Date)
+  updatedAt!: Date;
+
+  @CreateDateColumn({ name: 'created_at' })
+  @Field(() => Date)
+  createdAt!: Date;
 }

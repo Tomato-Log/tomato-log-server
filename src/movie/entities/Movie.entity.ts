@@ -17,7 +17,7 @@ export class Movie extends BaseEntity {
 
   @Column({ unique: true, name: 'movie_id' })
   @Field(() => Int)
-  movieId: number;
+  movieId!: number;
 
   @Column()
   @Field(() => String)

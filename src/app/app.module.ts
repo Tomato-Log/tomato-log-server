@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from 'src/user/user.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MovieModule } from 'src/movie/movie.module';
+import { RecordModule } from 'src/record/record.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { MovieModule } from 'src/movie/movie.module';
     }),
     UserModule,
     MovieModule,
+    RecordModule,
   ],
   controllers: [AppController],
   providers: [AppService],

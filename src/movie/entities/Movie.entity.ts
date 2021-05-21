@@ -12,12 +12,12 @@ import {
 @Entity()
 export class Movie extends BaseEntity {
   @PrimaryGeneratedColumn()
-  @Field(() => ID)
+  @Field(() => ID, { nullable: true })
   id!: number;
 
-  @Column({ unique: true, name: 'movie_id' })
-  @Field(() => Int)
-  movieId!: number;
+  @Column({ unique: true, name: 'mvdb_id' })
+  @Field(() => ID)
+  mvdbId!: number;
 
   @Column()
   @Field(() => String)
@@ -48,10 +48,10 @@ export class Movie extends BaseEntity {
   overview: string;
 
   @UpdateDateColumn({ name: 'updated_at' })
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   updatedAt!: Date;
 
   @CreateDateColumn({ name: 'created_at' })
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   createdAt!: Date;
 }

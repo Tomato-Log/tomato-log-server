@@ -12,12 +12,12 @@ export class MovieService {
     return Movie.find();
   }
 
-  public async saveFromId(id: number): Promise<Movie> {
+  public async saveFromMvdbId(mvdbId: number): Promise<Movie> {
     try {
       // 이미 존재하는 영화인지 확인
       const isExist = await Movie.findOne({
         where: {
-          movieId: id,
+          mvdbId: mvdbId,
         },
       });
 
@@ -25,7 +25,7 @@ export class MovieService {
         throw new UserInputError(ERROR_MESSAGE.movieAlreadyExistError);
       }
 
-      const res = await this.getMovieDto(`/${id}`);
+      const res = await this.getMovieDto(`/${mvdbId}`);
       const movie: Movie = await this.getMovieFromMovieDto(res as MovieDto);
       return movie.save();
     } catch (err) {
@@ -52,7 +52,7 @@ export class MovieService {
   public async getMovieFromMovieDto(dto: MovieDto) {
     try {
       const movie: Movie = Movie.create({
-        movieId: dto.id,
+        mvdbId: dto.id,
         title: dto.title,
         releaseDate: dto.release_date,
       });

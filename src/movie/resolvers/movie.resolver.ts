@@ -19,7 +19,7 @@ export class MovieResolver {
 
   /** 영화 저장이 잘 작동하는지 서버측에서 확인하기 위한 mutation */
   @Mutation(() => Movie, { name: 'saveMovie' })
-  public async saveMovie(@Args('id', { type: () => ID }) id: string) {
-    return await this.movieService.saveFromId(Number(id));
+  public async saveMovie(@Args('mvdbId', { type: () => ID }) mvdbId: string) {
+    return await this.movieService.saveFromMvdbId(Number(mvdbId));
   }
 }

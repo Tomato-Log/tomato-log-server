@@ -9,8 +9,11 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
     "incremental": true,
-    "esModuleInterop": true, 
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "apollo-cache-control": ["node_modules/apollo-cache-control"]
+    }
   }
 }

@@ -1,14 +1,15 @@
-import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
-import { User } from 'src/user/entities/User.entity';
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  CreateDateColumn,
-  ManyToOne,
 } from 'typeorm';
+import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
+import { Movie } from 'src/movie/entities/Movie.entity';
+import { User } from 'src/user/entities/User.entity';
 
 @ObjectType()
 @Entity()
@@ -16,9 +17,6 @@ export class Record extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: number;
-
-  @ManyToOne(() => User, (user) => user.record)
-  user: User;
 
   @Column({ name: 'score', nullable: false })
   @Field(() => Int)
@@ -47,4 +45,10 @@ export class Record extends BaseEntity {
   @CreateDateColumn({ name: 'created_at' })
   @Field(() => Date)
   createdAt!: Date;
+
+  @ManyToOne(() => Movie)
+  movie: Movie;
+
+  @ManyToOne(() => User, (user) => user.records)
+  user: User;
 }

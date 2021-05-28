@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Record } from 'src/record/entities/Record.entitiy';
+import { Record } from 'src/record/entities/record.entity';
 import {
   BaseEntity,
   Column,
@@ -39,6 +39,7 @@ export class User extends BaseEntity {
   @Field(() => Date)
   createdAt!: Date;
 
+  @Field(() => [Record])
   @OneToMany(() => Record, (record) => record.user)
-  record: Record[];
+  records: Record[];
 }

@@ -2,19 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  id: ID!
-  iCloudKeyChain: String!
-  nickname: String!
-  updatedAt: DateTime!
-  createdAt: DateTime!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type Movie {
   id: ID
   mvdbId: ID!
@@ -29,18 +16,55 @@ type Movie {
   createdAt: DateTime
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  id: ID!
+  iCloudKeyChain: String!
+  nickname: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  records: [Record!]!
+}
+
+type Record {
+  id: ID!
+  score: Int!
+  recordDate: DateTime
+  place: String
+  memorableLine: String
+  comments: String
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
 type Query {
   users: [User!]!
+  getRecordsFromUserId(userId: ID!): [Record!]!
   movies: [Movie!]!
   getPopulars: [Movie!]!
 }
 
 type Mutation {
   createUser(data: UserDataInput!): User!
+  saveRecord(data: RecordDataInput!): Record!
   saveMovie(mvdbId: ID!): Movie!
 }
 
 input UserDataInput {
   iCloudKeyChain: String!
   nickname: String!
+}
+
+input RecordDataInput {
+  mvdbId: ID!
+  userId: ID!
+  score: Int!
+  recordDate: DateTime!
+  place: String!
+  memorableLine: String!
+  comments: String!
 }
